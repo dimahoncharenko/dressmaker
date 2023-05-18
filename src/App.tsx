@@ -11,12 +11,15 @@ import { Container, TwoColumnedMarkup } from "./shared/styled";
 
 // Imports utils
 import { state } from "./store";
+import config from "./utils/config";
 
 function App() {
   useQuery({
     queryKey: ["fetch collection"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:5000/api/v1/collection/");
+      const response = await fetch(
+        `${config.production.backendUrl}/api/v1/collection/`
+      );
       const data = await response.json();
       state.collection = data.decals;
     },

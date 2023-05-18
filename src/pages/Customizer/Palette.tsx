@@ -1,5 +1,5 @@
 // Imports libraries
-import { useState, ChangeEvent, CSSProperties } from "react";
+import { useState, ChangeEvent } from "react";
 import { useSnapshot } from "valtio";
 
 // Imports utils

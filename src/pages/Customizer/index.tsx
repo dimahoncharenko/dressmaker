@@ -10,6 +10,7 @@ import { editors, filters } from "../../utils/constants";
 import { slideAnimation } from "../../utils/motion";
 import { state, Decal } from "../../store";
 import { useComplementary } from "../../hooks/useComplementary";
+import config from "../../utils/config";
 
 // Imports styles
 import {
@@ -85,7 +86,7 @@ export const Customizer = () => {
 
     const id = snap.isLogoTexture ? snap.logoDecal.id : snap.fullDecal.id;
 
-    await fetch(`http://localhost:5000/api/v1/collection/${id}`, {
+    await fetch(`${config.production.backendUrl}/api/v1/collection/${id}`, {
       method: "DELETE",
     });
 

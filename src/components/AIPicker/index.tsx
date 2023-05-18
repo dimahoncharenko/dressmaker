@@ -12,6 +12,7 @@ import { Button } from "../../shared/styled";
 
 // Imports utils
 import { state } from "../../store";
+import config from "../../utils/config";
 
 export const AIPicker = () => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -23,16 +24,19 @@ export const AIPicker = () => {
       if (!decalType) return;
       setIsGenerating(true);
 
-      const request = await fetch("http://localhost:5000/api/v1/dall-e", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt,
-          decalType: type,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const request = await fetch(
+        `${config.production.backendUrl}/api/v1/dall-e`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            prompt,
+            decalType: type,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await request.json();
       const decal = data.decal;

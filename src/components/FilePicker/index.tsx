@@ -17,6 +17,7 @@ import { Button, LoadingText } from "../../shared/styled";
 // Imports utils
 import { state, Decal } from "../../store";
 import { useComplementary } from "../../hooks/useComplementary";
+import config from "../../utils/config";
 
 const isDecalType = (param: string): param is Decal["type"] => {
   const avaivableTypes = ["LOGO", "TEXTURE"];
@@ -48,20 +49,20 @@ export const FilePicker = () => {
         const payload = new FormData();
         payload.append("image", file);
 
-        const test = await axios.post(
+        const reply = await axios.post(
           `https://api.imgbb.com/1/upload?key=eda2fcfb800dadca06bc7eec00a6a17c`,
           payload
         );
 
         const decal: Decal = {
           id: Infinity,
-          image: test.data.data.url,
+          image: reply.data.data.url,
           title: file.name,
           type: isDecalType(textureType) ? textureType : "LOGO",
         };
 
         const response = await axios.post<{ decal: Decal }>(
-          "http://localhost:5000/api/v1/collection/add",
+          `${config.production.backendUrl}/api/v1/collection/add`,
           {
             decal,
           }
