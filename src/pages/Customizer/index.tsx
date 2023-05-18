@@ -181,10 +181,8 @@ export const Customizer = () => {
                 color={baseColor}
                 onClick={() => {
                   downloadCanvasToImage();
-                  snap.isFullTexture &&
-                    downloadImage(snap.fullDecal.image, "TEXTURE");
-                  snap.isLogoTexture &&
-                    downloadImage(snap.logoDecal.image, "LOGO");
+                  snap.isFullTexture && downloadImage(snap.fullDecal.image);
+                  snap.isLogoTexture && downloadImage(snap.logoDecal.image);
                 }}
               >
                 Завантажити <br />

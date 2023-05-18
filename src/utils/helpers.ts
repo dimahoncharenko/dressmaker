@@ -19,7 +19,7 @@ const toDataURL = async (url: string) => {
   return URL.createObjectURL(blob);
 };
 
-export const downloadImage = async (url: string, type: "LOGO" | "TEXTURE") => {
+export const downloadImage = async (url: string) => {
   const a = document.createElement("a");
   a.href = await toDataURL(url);
   a.download = "";
@@ -29,7 +29,7 @@ export const downloadImage = async (url: string, type: "LOGO" | "TEXTURE") => {
 };
 
 export const reader = (file: File) =>
-  new Promise<string | ArrayBuffer | null>((resolve, reject) => {
+  new Promise<string | ArrayBuffer | null>((resolve, _) => {
     const fileReader = new FileReader();
     fileReader.onload = () => resolve(fileReader.result);
     fileReader.readAsDataURL(file);

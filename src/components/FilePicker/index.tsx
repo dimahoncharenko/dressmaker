@@ -76,6 +76,7 @@ export const FilePicker = () => {
           state.fullDecal = newDecal;
         }
 
+        state.collection.push(newDecal);
         setIsLoading(false);
       }
     } catch (err) {

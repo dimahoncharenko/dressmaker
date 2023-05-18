@@ -15,9 +15,9 @@ export const useComplementary = () => {
      */
 
     // Convert color to RGB values
-    let r = parseInt(snap.color.substr(1, 2), 16);
-    let g = parseInt(snap.color.substr(3, 2), 16);
-    let b = parseInt(snap.color.substr(5, 2), 16);
+    let r = parseInt(snap.color.slice(1, 3), 16);
+    let g = parseInt(snap.color.slice(3, 5), 16);
+    let b = parseInt(snap.color.slice(5, 7), 16);
 
     // Find complement RGB values
     let rComp = 255 - r;
